@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imammahdy - Portofolio DKV</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="welcome-overlay">
+        <div class="welcome-content">
+            <h1 class="welcome-text">Selamat Datang</h1>
+            <div class="loading-spinner"></div>
+            <p class="tagline-text">Menyiapkan pengalaman terbaik untuk Anda...</p>
+        </div>
+    </div>
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo">Imammahdy.</a>
+            <ul class="nav-links">
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#skills">Keahlian</a></li>
+                <li><a href="#portfolio">Portofolio</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+ 
+        <section id="about" class="about fade-in-section">
+            <div class="container">
+                <img src="imammahdy.jpg" alt="Foto Imammahdy" class="profile-pic">
+                <h2 class="section-title">Tentang Saya</h2>
+                <p class="section-description">Saya adalah IMAM MAHDI, seorang pelajar kelas 11 DKV1 di SMKN1KALIANGET. Saya memiliki bakat dan minat yang kuat di bidang Desain Komunikasi Visual (DKV) Meskipun saya Di DKV Saya juga suka di bidang IT. Saya senang mengeksplorasi kreativitas melalui desain dan memecahkan masalah melalui coding.</p>
+                <p class="section-description">Saat ini, saya telah berhasil mengembangkan dua website sebagai bagian dari perjalanan belajar dan eksplorasi saya di dunia digital.</p>
+            </div>
+        </section>
+
+        <section id="skills" class="skills fade-in-section">
+            <div class="container">
+                <h2 class="section-title">Keahlian</h2>
+                <div class="skill-grid">
+                    <div class="skill-item">
+                        <i class="fas fa-palette"></i>
+                        <h3>Desain Grafis</h3>
+                        <p>Adobe Photoshop, Illustrator, CorelDRAW,</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-code"></i>
+                        <h3>Pengembangan Web</h3>
+                        <p>HTML, CSS, JavaScript dasar</p>
+                    </div>
+                <div class="skill-item">
+                <i class="fas fa-camera"></i> <h3>Fotografi</h3> <p>Komposisi, Pencahayaan, Retouching (Lightroom, Photoshop)</p> </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="portfolio fade-in-section">
+            <div class="container">
+                <h2 class="section-title">Portofolio Karya</h2>
+                <p class="section-description">Berikut adalah beberapa proyek digital yang telah saya buat.</p>
+                <div class="portfolio-options">
+                    <span class="option active" data-filter="web">web karya</span> <span class="option" data-filter="design">design</span>
+                    <span class="option" data-filter="fotography">foto</span>
+                </div>
+
+                <div class="portfolio-grid">
+                    <div class="portfolio-item" data-category="web">
+                        <img src="webkelas.jpg" alt="Website Kelas">
+                        <h3>WEBSITE KELAS</h3>
+                        <p>Ini adalah website kelas saya buat sebagai mestinya agar kenangan dan prestasi siswa tidak hilang.</p>
+                        <a href="https://cofsione.netlify.app/" target="_blank" class="btn-secondary">Lihat Proyek</a>
+                    </div>
+
+                    <div class="portfolio-item" data-category="web">
+                        <img src="AULINA.jpg" alt="Website Toko Bouquet AULINA">
+                        <h3>WEBSITE BOUQUET</h3>
+                        <p>Ini adalah website toko bouquet AULINA Bouquet yang dibuat dengan HTML, CSS, dan JavaScript sederhana.</p>
+                        <a href="https://aulinabouquet.netlify.app/" target="_blank" class="btn-secondary">Lihat Proyek</a>
+                    </div>
+
+                    <div class="portfolio-item" data-category="design">
+                        <img src="designinfinity2.jpg" alt="Design layangan">
+                        <h3>DESIGN LAYANGAN </h3>
+                        <p>Ini adalah design layangan dengan menggunakan infimite design </p>
+                        <a href="Design.html" target="Design.html" class="btn-secondary">Lihat Desain</a>
+                    </div>
+                  
+                    <div class="portfolio-item" data-category="fotography">
+                        <img src="foto1.jpg" alt="Judul Fotografi Anda">
+                        <h3>FOTO PEMANDANGAN SEKOLAH</h3>
+                        <p>foto ini di ambil di sekolah saya SMKN1KALIANGET Dengan langit biru dan sedikit awan .</p>
+                        <a href="foto.html" target="foto.html" class="btn-secondary">Lihat Foto</a> </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact fade-in-section">
+            <div class="container">
+                <h2 class="section-title">Kontak Saya</h2>
+                <p class="section-description">Tertarik untuk berkolaborasi atau sekadar menyapa? Jangan ragu untuk menghubungi saya!</p>
+                <div class="contact-links">
+                    <a href="mailto:imammahdy238@gmail.com" target="_blank"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="https://instagram.com/imammahdy" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Imammahdy. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

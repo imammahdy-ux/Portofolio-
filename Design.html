@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Layangan Infinite Design</title>
+    <style>
+        /* Styling CSS untuk Autoslider */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .slider-container {
+            max-width: 800px; /* Lebar maksimal slider */
+            position: relative;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Penting untuk menyembunyikan bagian gambar yang berlebih */
+        }
+
+        .slide {
+            display: none; /* Sembunyikan semua slide secara default */
+            text-align: center;
+            padding-bottom: 20px; /* Ruang di bawah caption */
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            display: block; /* Menghilangkan spasi ekstra di bawah gambar */
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            max-height: 600px; /* Batasi tinggi gambar agar tidak terlalu besar */
+            object-fit: contain; /* Memastikan gambar sepenuhnya terlihat dalam wadah */
+            background-color: #eee; /* Background jika gambar tidak mengisi penuh */
+        }
+
+        .caption {
+            padding: 15px 25px;
+            color: #333;
+            text-align: left;
+        }
+
+        .caption h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #0056b3; /* Warna judul keterangan */
+        }
+
+        .caption p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* --- Navigation Dots --- */
+        .dot {
+          cursor: pointer;
+          height: 15px;
+          width: 15px;
+          margin: 0 5px;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+          background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+          animation-name: fade;
+          animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+          from {opacity: .4} 
+          to {opacity: 1}
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .slider-container {
+                max-width: 100%;
+                margin: 0;
+                border-radius: 0;
+            }
+            body {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .caption {
+                padding: 10px 15px;
+            }
+            .caption h3 {
+                font-size: 1.2em;
+            }
+            .caption p {
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <div class="slide fade">
+            <img src="designinfinity1.jpg" alt="Layangan Design Infinity 1">
+            <div class="caption">
+                <h3>Desain 'kumis'</h3>
+                <p>Sebuah layangan dengan kumis (songot dalam bhss madura) layangan ini dengan konsep berlian dengan perpaduan warna yang berani: merah di sisi kiri atas dan biru di sisi kanan atas, dipisahkan oleh garis abu-abu muda horisontal di tengah. Bagian bawah menampilkan kombinasi merah dan biru yang lebih kecil. Keunikan desain ini terletak pada dua motif hitam simetris di bagian atas, menyerupai sayap, cakar, atau gelombang yang dinamis. Diciptakan dengan presisi di Infinite Design, memancarkan energi dan keseimbangan visual.</p>
+            </div>
+        </div>
+
+        <div class="slide fade">
+            <img src="designinfinity2.jpg" alt="Layangan Design Infinity 2">
+            <div class="caption">
+                <h3>Desain 'Kelelawar' </h3>
+                <p>Layangan berbentuk berlian dengan motif triwarna (merah, putih, biru) yang elegan, melambangkan kebebasan dan semangat. Di tengahnya, siluet hitam pekat dari makhluk bersayap ganda dengan tanduk menonjol, memberikan kesan misterius dan gagah. Dibuat sepenuhnya menggunakan Infinite Design, menonjolkan kekuatan simetri dan kontras warna yang dramatis.</p>
+            </div>
+        </div>
+
+        <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span> 
+          <span class="dot" onclick="currentSlide(2)"></span> 
+        </div>
+    </div>
+
+    <script>
+        let slideIndex = 0; // Mulai dari slide pertama
+        let slideshowInterval; // Untuk menyimpan ID interval agar bisa direset
+
+        function showSlides() {
+            let i;
+            const slides = document.getElementsByClassName("slide");
+            const dots = document.getElementsByClassName("dot");
+
+            // Sembunyikan semua slide
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            // Hapus kelas 'active' dari semua dot
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+
+            // Pindah ke slide berikutnya
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            
+            // Tampilkan slide saat ini dan tandai dot yang sesuai
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+            
+            // Atur timer untuk slide berikutnya (setiap 4 detik)
+            slideshowInterval = setTimeout(showSlides, 4000); 
+        }
+
+        // Fungsi untuk navigasi manual menggunakan dots
+        function currentSlide(n) {
+            clearTimeout(slideshowInterval); // Hentikan autoslider sementara
+            slideIndex = n - 1; // Sesuaikan index
+            showSlides(); // Tampilkan slide yang dipilih dan mulai ulang autoslider
+        }
+
+        // Jalankan slideshow saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', showSlides);
+
+    </script>
+
+</body>
+</html>

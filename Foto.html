@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foto Saya - Pemandangan</title>
+    <style>
+        /* Styling CSS langsung di dalam HTML */
+        body {
+            font-family: 'Roboto', sans-serif; /* Menggunakan font dari portofolio Anda */
+            margin: 0;
+            display: flex;
+            flex-direction: column; /* Mengatur tata letak kolom */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #F5F5DC; /* Warna latar belakang dari portofolio Anda */
+            color: #4A6B3C; /* Warna teks utama dari portofolio Anda */
+            padding: 20px;
+            box-sizing: border-box; /* Memastikan padding tidak menambah lebar elemen */
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 700px; /* Lebar maksimum container */
+            width: 100%; /* Agar responsif */
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif; /* Font judul dari portofolio Anda */
+            color: #D4AF37; /* Warna aksen dari portofolio Anda */
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block; /* Menghilangkan spasi ekstra di bawah gambar */
+            margin: 0 auto 20px auto; /* Pusatkan gambar dan beri jarak bawah */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border: 3px solid #4A6B3C; /* Border dari warna utama */
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #8D6B4E; /* Warna teks sekunder dari portofolio Anda */
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #D4AF37; /* Warna aksen */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #C09A2E; /* Warna sedikit lebih gelap saat hover */
+        }
+
+        /* Responsif untuk layar lebih kecil */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .container {
+                padding: 20px;
+            }
+            p {
+                font-size: 1em;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Pemandangan Langit Biru</h1>
+        <img src="foto1.jpg" alt="Pemandangan Langit Biru dengan Pohon">
+        <p>Foto ini menampilkan keindahan langit biru yang cerah dengan awan putih yang menghiasi, dihiasi oleh siluet pepohonan yang menjulang tinggi dan atap bangunan sekolah saya sendiri . Komposisi ini menciptakan suasana yang tenang dan alami.</p>
+        <a href="index.html" class="back-link">Kembali ke Portofolio</a>
+    </div>
+</body>
+</html>

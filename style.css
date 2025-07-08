@@ -1,0 +1,697 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+/* Variabel CSS - Menggunakan palet warna yang terinspirasi alam Indonesia */
+:root {
+    --primary-color: #4A6B3C; /* Hijau hutan yang lebih gelap */
+    --secondary-color: #8D6B4E; /* Cokelat kayu/tanah */
+    --accent-color: #D4AF37; /* Emas kuningan, mengingatkan pada ornamen tradisional atau rempah */
+    --bg-light: #F5F5DC; /* Krem terang */
+    --bg-dark: #E0E0C6; /* Krem gelap */
+    --text-light: #fff;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Roboto', sans-serif;
+    --shadow-light: rgba(0,0,0,0.08);
+    --shadow-medium: rgba(0,0,0,0.15);
+}
+
+/* Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--primary-color);
+    background-color: var(--bg-light);
+    overflow-x: hidden;
+}
+
+/* Welcome Overlay Styles */
+#welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color); /* Menggunakan warna primary Anda */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Pastikan di atas semua elemen lain */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out; /* Animasi menghilang */
+    flex-direction: column;
+}
+
+#welcome-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.welcome-content {
+    text-align: center;
+    color: var(--text-light);
+}
+
+.welcome-text {
+    font-family: var(--font-heading);
+    font-size: 4em;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInSlideDown 1s ease-out forwards;
+}
+
+.tagline-text {
+    font-family: var(--font-body);
+    font-size: 1.2em;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.loading-spinner {
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid var(--text-light);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fadeInSlideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Pastikan konten utama website dimulai dari opacity 0 dan kemudian fade in */
+body > *:not(#welcome-overlay) {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+}
+body.loaded > *:not(#welcome-overlay) {
+    opacity: 1;
+}
+
+/* Header & Navigasi */
+.header {
+    background-color: var(--text-light);
+    padding: 1.5rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideInDown 0.6s ease-out;
+}
+
+@keyframes slideInDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/hero-indonesia-landscape.jpg') no-repeat center center/cover;
+    background-size: 110%;
+    animation: heroZoom 15s infinite alternate ease-in-out;
+    color: var(--text-light);
+    text-align: center;
+    padding: 8rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes heroZoom {
+    from { background-size: 110%; }
+    to { background-size: 100%; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUpContent 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInSlideUpContent {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 4.2rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+}
+
+.hero-content p {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: var(--text-light);
+    padding: 1.2rem 2.5rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    background-color: #C09A2E;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+}
+
+/* Bagian Umum */
+section {
+    padding: 5rem 0;
+    text-align: center;
+}
+
+section:nth-child(even) {
+    background-color: var(--bg-dark);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    background-color: var(--accent-color);
+    left: 20%;
+    bottom: -10px;
+    border-radius: 2px;
+}
+
+.section-description {
+    font-size: 1.1rem;
+    margin-bottom: 3.5rem;
+    color: var(--secondary-color);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition-delay: 0.8s;
+}
+
+/* About Section */
+.about .container {
+    max-width: 800px;
+}
+
+.about p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    color: var(--secondary-color);
+    text-align: justify;
+}
+
+.about p strong {
+    color: var(--primary-color);
+}
+
+/* Photo profile */
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    border: 5px solid var(--accent-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Skills Section */
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.skill-item {
+    background-color: var(--text-light);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.skill-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.skill-item i {
+    font-size: 3.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+.skill-item h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.skill-item p {
+    color: var(--secondary-color);
+    font-size: 1rem;
+}
+
+/* Portfolio Section */
+.portfolio-options {
+    display: flex;
+    justify-content: center; /* Pusatkan opsi */
+    gap: 15px; /* Jarak antar opsi */
+    margin-top: 10px;
+    margin-bottom: 30px; /* Jarak antara opsi dan grid portofolio */
+    opacity: 0; /* Untuk animasi scroll */
+    transform: translateY(20px); /* Untuk animasi scroll */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition-delay: 0.6s;
+}
+
+.option {
+    font-size: 1.4em; /* Ukuran font lebih besar */
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s ease, color 0.3s ease;
+}
+
+.option:hover {
+    color: var(--accent-color); /* Warna teks saat dihover */
+    border-bottom-color: var(--accent-color); /* Garis bawah saat dihover */
+}
+
+.option.active {
+    color: var(--accent-color); /* Warna teks opsi aktif */
+    border-bottom-color: var(--accent-color); /* Garis bawah opsi aktif */
+}
+
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+    padding: 3rem;
+    background-color: var(--text-light);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--bg-dark);
+}
+
+/* Aturan untuk item portofolio yang disembunyikan secara default */
+.portfolio-item {
+    background-color: var(--text-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out; /* Transisi untuk animasi */
+    text-align: left;
+    display: none; /* Sembunyikan secara default */
+    opacity: 0; /* Mulai dengan transparan */
+    transform: translateY(30px); /* Mulai sedikit ke bawah */
+}
+
+/* Aturan untuk item portofolio yang ditampilkan dan terlihat */
+.portfolio-item.is-visible {
+    display: block; /* Tampilkan elemen */
+    opacity: 1; /* Pudar masuk */
+    transform: translateY(0); /* Geser ke posisi normal */
+}
+
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.05);
+}
+
+.portfolio-item h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin: 1.5rem 1.5rem 0.8rem;
+    color: var(--primary-color);
+}
+
+.portfolio-item p {
+    color: var(--secondary-color);
+    margin: 0 1.5rem 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.portfolio-item .btn-secondary {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin: 0 1.5rem 2rem;
+    display: inline-block;
+}
+
+.portfolio-item .btn-secondary:hover {
+    background-color: var(--accent-color);
+    color: var(--text-light);
+}
+
+/* Contact Section */
+.contact p {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    margin-bottom: 2.5rem;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.contact-links a {
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-links a:hover {
+    color: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+.contact-links a i {
+    font-size: 1.5rem;
+    margin-right: 0.8rem;
+    color: var(--accent-color);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 2.5rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Animasi Scroll (Fade-in-section) */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Transisi dan Delay untuk elemen di dalam section yang is-visible */
+.about.is-visible .section-title,
+.skills.is-visible .section-title,
+.portfolio.is-visible .section-title,
+.contact.is-visible .section-title {
+    transition-delay: 0.2s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about.is-visible .section-description,
+.skills.is-visible .section-description,
+.portfolio.is-visible .section-description,
+.contact.is-visible .section-description {
+    transition-delay: 0.4s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Khusus untuk elemen di dalam About Section */
+.about.is-visible .profile-pic {
+    transition-delay: 0.6s;
+    opacity: 1;
+    transform: translateY(0);
+}
+.about.is-visible .about p {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.about.is-visible .about p:nth-of-type(1) { transition-delay: 0.8s; }
+.about.is-visible .about p:nth-of-type(2) { transition-delay: 1.0s; }
+
+
+/* Khusus untuk elemen di dalam Skills Section */
+.skills.is-visible .skill-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+.skills.is-visible .skill-item:nth-child(1) { transition-delay: 0.6s; }
+.skills.is-visible .skill-item:nth-child(2) { transition-delay: 0.7s; }
+.skills.is-visible .skill-item:nth-child(3) { transition-delay: 0.8s; }
+
+
+/* Khusus untuk elemen di dalam Portfolio Section */
+.portfolio.is-visible .portfolio-item {
+    /* opacity dan transform diatur oleh .portfolio-item.is-visible */
+    /* transition-delay: 0.6s; Hapus atau sesuaikan jika ingin delay per item */
+}
+
+.portfolio.is-visible .portfolio-options { /* Animasi untuk opsi filter */
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s; /* Sesuaikan atau hapus delay jika diinginkan */
+}
+
+
+/* Khusus untuk elemen di dalam Contact Section */
+.contact.is-visible .contact-links {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+}
+.contact.is-visible .contact-links a:nth-child(1) { transition-delay: 0.8s; }
+.contact.is-visible .contact-links a:nth-child(2) { transition-delay: 0.9s; }
+
+
+/* Responsif untuk Layar Kecil */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        margin-top: 1rem;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-links li {
+        margin: 0.5rem 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    /* Penyesuaian responsif untuk kategori portofolio */
+    .portfolio-options {
+        font-size: 1.1rem; /* Ukuran font lebih besar untuk mobile */
+        gap: 10px; /* Jarak antar opsi lebih kecil */
+        padding: 0 1rem; /* Sedikit padding di samping */
+    }
+
+    .option {
+        font-size: 1.1em; /* Ukuran font opsi individu lebih besar untuk mobile */
+        padding-bottom: 3px; /* Garis bawah lebih tipis */
+    }
+
+    .skill-item, .portfolio-item {
+        padding: 1.5rem;
+    }
+
+    .portfolio-item h3 {
+        font-size: 1.5rem;
+    }
+    .portfolio-grid {
+        padding: 1.5rem;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 6rem 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .skill-grid, .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+    }
+}
